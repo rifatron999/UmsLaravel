@@ -20,22 +20,22 @@ class LoginController extends Controller
 		
        $req->validate([
 
-            'uname'=>'required',
-            'password'=>'required|max:3',
+            'u_name'=>'required',
+            'u_password'=>'required|max:3',
             
         ]); 
 
 
 		
-		$result	= DB::table('t_users')->where('u_name', $req->uname)
-				 ->where('u_password', $req->password)
+		$result	= DB::table('t_users')->where('u_name', $req->u_name)
+				 ->where('u_password', $req->u_password)
 				 ->get();
 
 		//echo $result;
 
 		if(count($result) > 0){
 			
-			$req->session()->put('username', $req->uname );
+			$req->session()->put('username', $req->u_name );
 			$req->session()->put('type', $result[0]->u_type );
 			
 			//return redirect()->route('home.index');

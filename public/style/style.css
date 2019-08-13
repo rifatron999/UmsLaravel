@@ -122,14 +122,15 @@ ol li
   color: #676767;}
 
 #menubar
-{ width: 900px;
+{ width: 1500px;
   height: 72px;
   padding: 0;
+
   background: transparent url(transparent.png) repeat;} 
 
 ul#menu, ul#menu li
 { float: left;
-  margin: 0; 
+  margin: 0px 0px 0px 0px;
   padding: 0;}
 
 ul#menu li
@@ -137,7 +138,7 @@ ul#menu li
 
 ul#menu li a
 { letter-spacing: 0.1em;
-  font: normal 70% arial, sans-serif;
+  font: normal 100% arial, sans-serif;
   display: block; 
   float: left; 
   height: 37px;
@@ -146,6 +147,7 @@ ul#menu li a
   color: #FFF;
   text-transform: uppercase;
   text-decoration: none;
+  text-align: center;
   background: transparent;} 
 
 ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
@@ -153,7 +155,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   background: #068900;}
 
 #site_content
-{ width: 837px;
+{ width: 1437px;
   overflow: hidden;
   margin: 0 auto 0 auto;
   padding: 20px 24px 20px 37px;
@@ -236,7 +238,8 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   padding: 66px 16px 0px 300px;}
   
 .form_settings
-{ margin: 15px 0 0 0;}
+{ margin: 50px 400px 200px 400px;
+}
 
 .form_settings p
 { padding: 0 0 4px 0;}
