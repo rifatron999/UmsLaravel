@@ -6,50 +6,40 @@ use Illuminate\Http\Request;
 
 class portalController extends Controller
 {
-	public function sessionCheck($req){
-        if($req->session()->has('username')){
-            return true;
-        }else{
-            return false;
-        }
-    }
+	
     
 
     public function index(Request $req){
 
-        if($this->sessionCheck($req)){
+        
         	
         	if($req->session()->get('type') == 'faculty')
         	{
-        		return view('page.portal.faculty.portal');
+                 return redirect()->route('faculty.index');
+        		//return view('page.portal.faculty.portal');
         	}
         	
         	if($req->session()->get('type') == 'admin')
         	{
-        		return view('page.portal.admin.portal');
+        		return redirect()->route('admin.index');
         	}
         	
         	if($req->session()->get('type') == 'register')
         	{
-        		return view('page.portal.register.portal');
+        		return redirect()->route('register.index');
         	}
         	
         	if($req->session()->get('type') == 'student')
         	{
-        		return view('page.portal.student.portal');
+        		return redirect()->route('student.index');
         	}
 
         	else{
-        		$req->session()->flash('msg', "invalid usertype!");
+        		$req->session()->flash('msg', "illigal usertype or request!");
         		return redirect()->route('login.index');
         	    }
 
             
-
-        }else{
-
-            return redirect()->route('login.index');
-        }
 
     }
 }

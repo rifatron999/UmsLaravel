@@ -46,6 +46,7 @@ class LoginController extends Controller
 			return redirect()->route('login.index');
 			//return view('login.index');
 		}
+
 	}
 
 }

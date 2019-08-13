@@ -13,7 +13,7 @@ UMS-Login
           <li><a href="another_page.html">Another Page</a></li>
           <li><a href="contact.html">Contact Us</a></li>
           <li class="selected"><a href="/login">Login</a></li>
-          <li><a href="/login">Register</a></li>
+          <li><a href="/registration">Register</a></li>
         </ul>
 @endsection
 

@@ -19,11 +19,11 @@ class HomeController extends Controller
 
     public function index(Request $req){
 
-        if($this->sessionCheck($req)){
+        // if($this->sessionCheck($req)){
             return view('page.home.home');
-        }else{
-            return redirect()->route('login.index');
-        }
+        // }else{
+        //     return redirect()->route('login.index');
+        // }
 
     }
 

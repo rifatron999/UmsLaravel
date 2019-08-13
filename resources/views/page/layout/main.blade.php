@@ -15,7 +15,7 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1 style="font-size:240%;" ><a href="index.html">University <span class="logo_colour">Management </span>System</a></h1>
+          <h1 style="font-size:240%;" ><a href="/home">University <span class="logo_colour">Management </span>System</a></h1>
           <h2> Education Software</h2>
         </div>
       </div>
