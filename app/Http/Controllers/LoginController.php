@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 //use validator;
-use Illuminate\Support\Facades\Validator;
+//use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
 
@@ -41,7 +41,7 @@ class LoginController extends Controller
 			//return redirect()->route('home.index');
 			return redirect()->route('portal.index');
 		}else{
-			$req->session()->flash('msg', "invalid username or password!");
+			$req->session()->flash('msg', "⚠️ Invalid Username or Password!");
 			
 			return redirect()->route('login.index');
 			//return view('login.index');

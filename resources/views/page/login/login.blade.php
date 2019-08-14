@@ -19,21 +19,28 @@ UMS-Login
 
 @section('site_content')
 <div class="sidebar">
+<font color="red">
+        @foreach($errors->all() as $err)
+  ⚠️{{$err}} <br>
+@endforeach
+
+  <div>
+    {{session('msg')}}
+  </div>
+     
+      </font>
         
       </div>
       <div id="content">
         <!-- insert the page content here -->
-        
-        
-     
-      
+       
 
-      <form method="post">
+      <form  method="post">
 	<!--	{{csrf_field()}}-->
 	<!--<input type="hidden" name="_token" value="{{csrf_token()}}"> -->
 		@csrf
 		
-			<form action="#" method="post">
+			
           <div class="form_settings">
             <p><span>Username</span><input class="contact" type="text" name="u_name" value="" /></p>
 
@@ -44,13 +51,7 @@ UMS-Login
           </div>
       
 				
-					@foreach($errors->all() as $err)
-	{{$err}} <br>
-@endforeach
-
-	<div>
-		{{session('msg')}}
-	</div>
+					
 				
 	</form>
 	 </div>

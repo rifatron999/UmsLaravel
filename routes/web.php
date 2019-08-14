@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 //Route::get('/', 'PageController@home');
 //Route::get('/page/login', 'PageController@login');
-Route::get('/page/admin', 'PageController@admin');
+//Route::get('/page/admin', 'PageController@admin');
 
 //Route::get('/page/user', 'PageController@user');
 
@@ -30,6 +30,7 @@ Route::post('/login', 'loginController@valid');
 
 //register
 Route::get('/registration','registrationController@index')->name('registration.index');
+Route::post('/registration', 'registrationController@valid');
 //register ends
 
 //home

@@ -236,6 +236,9 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
 { height: 0px;
   text-align: right;
   padding: 66px 16px 0px 300px;}
+
+#inline
+{ display: inline-block;}
   
 .form_settings
 { margin: 50px 400px 200px 400px;
@@ -252,10 +255,11 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
 .form_settings input, .form_settings textarea
 { padding: 5px; 
   width: 299px; 
-  font: 100% arial; 
+  font: 70% arial; 
   border: 1px solid #E5E5DB; 
   background: #FFF; 
   color: #47433F;}
+
   
 .form_settings .submit
 { font: 100% arial; 
