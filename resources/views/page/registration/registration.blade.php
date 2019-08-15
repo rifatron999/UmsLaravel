@@ -40,7 +40,7 @@ UMS-Register
 
      <form  method="post">
           <div class="form_settings">
-            <p><span>Name</span><input placeholder="The Username should be unique" class="contact" type="text" name="ut_name" value="" /></p>
+            <p><span>Name</span><input placeholder="The Username should be unique" class="contact" type="text" name="u_name" value="" /></p>
 
             <p><span>Email Address</span><input placeholder="*"class="contact" type="email" name="ut_email" value="" /></p>
 
@@ -65,13 +65,42 @@ UMS-Register
               </select  >
             </p>
 
+<script>
+function myFunction() {
+  var x = document.getElementById("mySelect").value;
+  
+  if(x == 'register'){
+  document.getElementById("mySelect2").disabled=true;
+  }
+  else{document.getElementById("mySelect2").disabled=false;}
+
+}
+</script>
 
             <p>
               <span>Request Type</span>
-              <select name="ut_type" >
-  <option value="register"  >Register</option>
+ <select name="ut_type" id="mySelect" onchange="myFunction()">
+  
   <option value="faculty"  >Faculty</option>
-  <option value="student"  >Student</option>
+ <option value="student"  >Student</option>
+ <option  value="register" >Register</option>
+  
+              </select>
+            </p>
+
+
+
+
+            <p>
+              <span>Department</span>
+              <select name="ut_dept" id="mySelect2">
+                <?php
+
+                for ($x = 0; $x <(count($t_department)); $x++) {
+    echo "<option value='".$t_department[$x]->d_name."'>".$t_department[$x]->d_name."</option>";
+ }
+       ?>
+
   
               </select>
             </p>
@@ -91,5 +120,10 @@ UMS-Register
       
 
       
-	 </div>
-	@endsection
+   </div>
+  @endsection
+
+
+
+
+

@@ -9,7 +9,10 @@ class registrationController extends Controller
 {
     public function index()
     {
-    	return view('page.registration.registration');
+      $t_department = DB::table('t_department')->get();
+      //echo $t_department;
+      //echo (count($t_department));
+    	return view('page.registration.registration',['t_department' => $t_department]);
     }
 
 
@@ -21,7 +24,7 @@ class registrationController extends Controller
 		
        $req->validate([
 
-            'ut_name'=>'required|unique:t_temp_users',
+            'u_name'=>'required|unique:t_users',
             'ut_password'=>'required|max:3',
             'ut_password'=>'required|max:3',
             'utc_password'=>'required|same:ut_password|max:3',
@@ -36,16 +39,17 @@ class registrationController extends Controller
 
 
 //insert statrs
-       //echo $req;
+      // echo $req;
 
        DB::table('t_temp_users')->insert([
-    ['ut_name' => $req->ut_name,  
+    ['u_name' => $req->u_name,  
     'ut_password' => $req->ut_password ,
     'ut_dob' => $req->ut_dob ,
     'ut_gender' => $req->ut_gender,
     'ut_email' => $req->ut_email,
     'ut_phone' => $req->ut_phone,
     'ut_type' => $req->ut_type,
+    'ut_dept' => $req->ut_dept,
     'ut_pic' => $req->ut_pic
 ]
     
@@ -55,6 +59,7 @@ class registrationController extends Controller
 //insert ends
        // //$msg="reg comp";
        //   return view('page.registration.registration')->with('msg', 'complete');
+       
        $req->session()->flash('msg', "✔ Your registration request has been submitted to our admin");
         		return redirect()->route('registration.index');
 

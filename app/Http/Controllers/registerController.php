@@ -8,6 +8,7 @@ class registerController extends Controller
 {
     public function index(Request $request){
     	if($request->session()->get('type') == 'register'){
+    		
 		return view('page.portal.register.portal');
 		}
 	else{

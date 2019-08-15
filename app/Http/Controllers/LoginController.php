@@ -11,8 +11,15 @@ use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
-	public function index(){
-		return view('page.login.login');
+	public function index(Request $request){
+		if($request->session()->has('username')){
+            return redirect()->route('portal.index');
+        }else{
+            return view('page.login.login');
+        }
+
+
+		
 	}
 
 	public function valid(Request $req){
@@ -37,6 +44,12 @@ class LoginController extends Controller
 			
 			$req->session()->put('username', $req->u_name );
 			$req->session()->put('type', $result[0]->u_type );
+			$req->session()->put('u_password', $result[0]->u_password );
+			$req->session()->put('u_dob', $result[0]->u_dob );
+			$req->session()->put('u_gender', $result[0]->u_gender );
+			$req->session()->put('u_email', $result[0]->u_email );
+			$req->session()->put('u_phone', $result[0]->u_phone );
+			$req->session()->put('u_pic', $result[0]->u_pic );
 			
 			//return redirect()->route('home.index');
 			return redirect()->route('portal.index');
