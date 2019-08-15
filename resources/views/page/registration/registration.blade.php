@@ -19,6 +19,7 @@ UMS-Register
 
 @section('site_content')
 <div class="sidebar">
+  
   <font color="red">
         @foreach($errors->all() as $err)
   ⚠️{{$err}} <br>
@@ -30,7 +31,7 @@ UMS-Register
       </font>
 
         
-      </div>
+</div>
       <div id="content">
         <!-- insert the page content here -->
         

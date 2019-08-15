@@ -150,7 +150,12 @@ ul#menu li a
   text-align: center;
   background: transparent;} 
 
-ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
+  ul#menu li.selected a
+  {
+    color: #f7ec19;
+  background: #068999;}
+
+ul#menu li a:hover,  ul#menu li.selected a:hover
 { color: #FFF;
   background: #068900;}
 
@@ -252,7 +257,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   width: 200px; 
   text-align: left;}
   
-.form_settings input, .form_settings textarea
+.form_settings input
 { padding: 5px; 
   width: 299px; 
   font: 70% arial; 
@@ -272,9 +277,14 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   background: #068900; 
   color: #FFF;}
 
-.form_settings textarea, .form_settings select
+ .form_settings select
 { font: 100% arial; 
   width: 299px;}
+
+  .form_settings textarea
+{ font: 100% arial; 
+  width: 700px;
+  height: : 330px;}
 
 .form_settings select
 { width: 310px;}

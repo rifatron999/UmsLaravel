@@ -41,9 +41,15 @@ Route::get('/home', 'homeController@index')->name('home.index');
 Route::group(['middleware'=>['session_check']], function(){
 
 Route::get('/portal','portalController@index')->name('portal.index');
+
 Route::get('/portal/faculty','facultyController@index')->name('faculty.index');
+Route::get('/portal/faculty/tsf','facultyController@tsf')->name('faculty.tsf');
+Route::post('/portal/faculty/tsf', 'facultyController@uploadTsf');
+
 Route::get('/portal/admin','adminController@index')->name('admin.index');
+
 Route::get('/portal/register','registerController@index')->name('register.index');
+
 Route::get('/portal/student','studentController@index')->name('student.index');
 
 });
