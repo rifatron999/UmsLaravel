@@ -37,7 +37,7 @@ Route::post('/registration', 'registrationController@valid');
 Route::get('/home', 'homeController@index')->name('home.index');
 //home ends
 
-//portal
+//portal starts
 Route::group(['middleware'=>['session_check']], function(){
 
 Route::get('/portal','portalController@index')->name('portal.index');
@@ -47,11 +47,23 @@ Route::post('/portal/profile', 'portalController@updateProfile');
 
 //profile ends
 
+
+//preReg starts
+Route::get('/portal/preRegistration','preRegController@index')->name('preReg.index'); //common for all
+
+Route::get('/portal/preRegistration/faculty','preRegController@faculty')->name('preReg.faculty'); //faculty
+Route::get('/portal/preRegistration/faculty/{c_register_id}', 'preRegController@updateFaculty')->name('preReg.updateFaculty');//faculty
+
+
+//preReg ends
+
 //fac starts
 
 Route::get('/portal/faculty','facultyController@index')->name('faculty.index');
 Route::get('/portal/faculty/tsf','facultyController@tsf')->name('faculty.tsf');
 Route::get('/portal/faculty/tsf/insert','facultyController@tsfinsert')->name('faculty.tsf.insert');
+Route::get('/portal/faculty/sectionDetails/{c_faculty_id}','facultyController@sectionDetails')->name('faculty.sectionDetails');
+
 
 Route::post('/portal/faculty/tsf/insert', 'facultyController@insertTsf');
 Route::post('/portal/faculty/tsf', 'facultyController@updateTsf');

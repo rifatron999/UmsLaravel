@@ -43,6 +43,7 @@ class LoginController extends Controller
 		if(count($result) > 0){
 			
 			$req->session()->put('username', $req->u_name );
+			$req->session()->put('dept', $result[0]->u_dept );
 			$req->session()->put('type', $result[0]->u_type );
 			$req->session()->put('u_password', $result[0]->u_password );
 			$req->session()->put('u_dob', $result[0]->u_dob );

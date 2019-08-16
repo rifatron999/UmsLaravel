@@ -11,7 +11,12 @@ class facultyController extends Controller
 
     public function index(Request $request){
     	if($request->session()->get('type') == 'faculty'){
-		return view('page.portal.faculty.portal');
+
+$facultyCourseList	= DB::table('t_course_faculty')->where('c_faculty_faculty', $request->session()->get('username'))
+->get();
+
+
+		return view('page.portal.faculty.portal',  ['facultyCourseList' => $facultyCourseList]);
 		}
 	else{
 		$request->session()->flash('msg', "illigal request!");
@@ -127,6 +132,7 @@ $tsf	= DB::table('t_tsf')->where('t_name', $request->session()->get('username'))
 	}
 
 
+//updateTsf starts
 
 	 public function updateTsf(Request $req){
 		
@@ -161,13 +167,30 @@ DB::table('t_tsf')->where('t_name', $req->session()->get('username'))
 		
 
 	}
+	//updateTsf ends
 
 
 
 
 
+//sectionDetails starts
+
+public function sectionDetails($c_faculty_id,Request $request){
+    	if($request->session()->get('type') == 'faculty'){
+
+$facultyCourseDetails	= DB::table('t_course_faculty')->where('c_faculty_id', $c_faculty_id)
+->get();
 
 
+		return view('page.portal.faculty.sectionDetails',  ['facultyCourseDetails' => $facultyCourseDetails]);
+		}
+	
+	else{
+		$request->session()->flash('msg', "illigal request!");
+            return redirect()->route('login.index');
+        }
+	}
+	//sectionDetails ends
 
 
 

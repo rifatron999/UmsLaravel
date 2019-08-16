@@ -44,9 +44,10 @@ class portalController extends Controller
 
     }
 
-public function profile(){
+public function profile()
+                 {
         return view('page.portal.profile.profile');
-    }
+                 }
 
 
 

@@ -11,7 +11,7 @@ UMS-portal-tsf
           <li><a href="/portal">portal</a></li>
           <li><a href="">🚹{{session('username')}}</a></li>
           <li class="selected"><a href="/portal/faculty/tsf">update TSF</a></li>
-          <li><a href="contact.html">page3</a></li>
+         <li><a href="/portal/preRegistration">pre registration</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
 @endsection
