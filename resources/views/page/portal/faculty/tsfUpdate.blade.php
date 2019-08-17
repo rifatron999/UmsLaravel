@@ -62,6 +62,9 @@ UMS-portal-tsf
 
        <style type="text/css">
         textarea {
+          display: block;
+    margin-left: auto;
+    margin-right: auto;
 font: 100% arial; 
   width: 1200px;
   height: 60px;

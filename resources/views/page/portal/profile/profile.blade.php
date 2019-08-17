@@ -45,7 +45,7 @@ UMS-Profile
 
             <p><span>Contact Number</span><input placeholder="The Contact number should be unique" class="contact" type="number" name="u_phone" value="{{session('u_phone')}}" /></p>
 
-            <p><span>DOB</span><input  class="contact" type="date" name="u_dob" value="" /></p>
+            <p><span>DOB</span><input  class="contact" type="date" name="u_dob" value="{{session('u_dob')}}" /></p>
 
             <p><span>Picture</span><input class="contact" type="file" name="u_pic" value="" /></p>
 

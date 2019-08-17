@@ -63,10 +63,15 @@ Route::get('/portal/faculty','facultyController@index')->name('faculty.index');
 Route::get('/portal/faculty/tsf','facultyController@tsf')->name('faculty.tsf');
 Route::get('/portal/faculty/tsf/insert','facultyController@tsfinsert')->name('faculty.tsf.insert');
 Route::get('/portal/faculty/sectionDetails/{c_faculty_id}','facultyController@sectionDetails')->name('faculty.sectionDetails');
+Route::get('/portal/faculty/sectionDetails/uploadSlide/{c_faculty_id}','facultyController@loadUploadSlide')->name('faculty.sectionDetails.uploadSlide');
+
+Route::get('/portal/faculty/sectionDetails/removeSlide/{sli_id}','facultyController@removeSlide')->name('faculty.sectionDetails.removeSlide');
 
 
 Route::post('/portal/faculty/tsf/insert', 'facultyController@insertTsf');
 Route::post('/portal/faculty/tsf', 'facultyController@updateTsf');
+Route::post('/portal/faculty/sectionDetails/{c_faculty_id}','facultyController@noticeInsert');
+Route::post('/portal/faculty/sectionDetails/uploadSlide/{c_faculty_id}','facultyController@slideInsert');
 //fac ends
 
 //tsfview starst

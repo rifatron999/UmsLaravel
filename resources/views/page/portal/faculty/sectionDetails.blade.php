@@ -12,6 +12,7 @@ UMS-portal-SectionDetails
           <li><a href="/portal/profile">🚹{{session('username')}}</a></li>
           <li><a href="/portal/faculty/tsf">update TSF</a></li>
           <li class="selected"><a href="{{route('faculty.sectionDetails',$facultyCourseDetails[0]->c_faculty_id )}}">Section Details</a></li>
+          <li><a href="{{route('faculty.sectionDetails.uploadSlide',$facultyCourseDetails[0]->c_faculty_id )}}">upload slide</a></li>
           <li><a href="/portal/preRegistration">pre registration</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
@@ -19,18 +20,24 @@ UMS-portal-SectionDetails
 
 @section('site_content')
 <div class="sidebar">
-        
+        <font color="red">
+        @foreach($errors->all() as $err)
+  ⚠️{{$err}} <br>
+@endforeach
+
+<div>
+    {{session('msg')}}
+  </div>
+      </font>
+
       </div>
       
         <!-- insert the page content here -->
         
 
-        
 
-  
-   
     
-<table align="left" cellspacing="10" > 
+<table  cellspacing="10" > 
   <tr >
     @foreach ($facultyCourseDetails as $s) 
     
@@ -46,8 +53,210 @@ UMS-portal-SectionDetails
        @endforeach
    </tr>
     
-  
+  </table>
+
+<!-- notice starts  -->
+
+<table align="left" border="1" >
+    
+    <tr align="center">
+      
+      <td>PREVIOUS NOTICES</td>
+      
+    </tr>
+
+    @foreach ($CourseNotice as $s) 
+      <tr  >
+        
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>{{$s->n_course_title}}</h2>
+    </div>
+    <div class="modal-body">
+      <p>{{$s->n_course_notice}}</p>
+      <p>on {{$s->n_course_date}}</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Best Regards,<br>
+ {{$facultyCourseDetails[0]->c_faculty_faculty}}, <br>
+Faculty, <br>
+{{session('dept')}} Department, <br>
+UMS
+</h3>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+        
+        <td id="myBtn" style="font-size:20px;" >{{$s->n_course_title}}<sub> on {{$s->n_course_date}}</sub></td>
+       
+        
+        
+      
+       @endforeach
+   
+    </table>
+
+<!-- notice ends  -->
+
+
+
+
+
+
+
+
+  <form   method="post">
+    <div class="form_settings">
+
+     <p><input placeholder="Write notice title here *"  name="n_course_title"></p>
+     <input  type='date' id='hasta' name="n_course_date" value='<?php echo date('Y-m-d');?>'>
+     <br>
+
+            <p><textarea placeholder="Write notice description here *"  name="n_course_notice"></textarea></p>
+
+            
+
+            <p ><span></span><input class="submit" type="submit" name="name" value="Submit" /></p> 
+          </div>
+          </form>
+
+
+ <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+
+
+
+
         
         
      
       @endsection
+
+
+
+      <style type="text/css">
+        textarea {
+          display: inline;
+    margin-left: auto;
+    margin-right: auto;
+font: 100% arial; 
+  width: 900px;
+  height: 80px;
+}
+
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #ebf5a2;
+  margin: auto;
+  padding: 0;
+  border: 10px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 1.0s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #a2f5a3;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #a2b8f5;
+  color: white;
+}
+
+
+      </style>
+
+
+
+     

@@ -182,7 +182,11 @@ $facultyCourseDetails	= DB::table('t_course_faculty')->where('c_faculty_id', $c_
 ->get();
 
 
-		return view('page.portal.faculty.sectionDetails',  ['facultyCourseDetails' => $facultyCourseDetails]);
+$CourseNotice	= DB::table('t_course_notice')->where('n_course_id', $c_faculty_id)->orderBy('n_id', 'desc')
+->get();
+
+
+		return view('page.portal.faculty.sectionDetails',['facultyCourseDetails' => $facultyCourseDetails],['CourseNotice' => $CourseNotice]);
 		}
 	
 	else{
@@ -191,6 +195,171 @@ $facultyCourseDetails	= DB::table('t_course_faculty')->where('c_faculty_id', $c_
         }
 	}
 	//sectionDetails ends
+
+
+
+
+//noticeInsert starts
+
+public function noticeInsert($c_faculty_id,Request $request){
+    	if($request->session()->get('type') == 'faculty'){
+
+    		// echo $c_faculty_id;
+    		// echo $request;
+
+
+// $facultyCourseDetails	= DB::table('t_course_faculty')->where('c_faculty_id', $c_faculty_id)
+// ->get();
+
+//NOTICE INSERT STARTS 
+    		$request->validate([
+
+           
+            'n_course_title'=>'required|max:40',
+            'n_course_notice'=>'required'
+            
+            
+
+
+            
+        ]); 
+
+
+//insert statrs
+      // echo $req;
+
+       DB::table('t_course_notice')->insert([
+    ['n_course_id' => $c_faculty_id,  
+    'n_course_title' => $request->n_course_title,  
+    'n_course_date' => $request->n_course_date,  
+    'n_course_notice' => $request->n_course_notice 
+   
+]
+    
+]);
+
+
+
+
+$request->session()->flash('msg', "✓ NOTICE SENT !");
+	return redirect()->route('faculty.sectionDetails',$c_faculty_id);
+		}
+	
+	else{
+		$request->session()->flash('msg', "illigal request!");
+            return redirect()->route('login.index');
+        }
+	}
+	//NOTICE INSERT ends
+
+
+
+//loadUploadSlide starts
+
+public function loadUploadSlide($c_faculty_id,Request $request){
+    	if($request->session()->get('type') == 'faculty'){
+
+$facultySlideList	= DB::table('t_course_slide')->where('sli_course_id', $c_faculty_id)
+->get();
+
+
+/*$CourseNotice	= DB::table('t_course_notice')->where('n_course_id', $c_faculty_id)->orderBy('n_id', 'desc')
+->get();*/
+
+
+		return view('page.portal.faculty.uploadSlide',['facultySlideList' => $facultySlideList,'CourseId' => $c_faculty_id]);
+		}
+	
+	else{
+		$request->session()->flash('msg', "illigal request!");
+            return redirect()->route('login.index');
+        }
+	}
+	//loadUploadSlide ends
+
+
+
+
+//slideInsert starts
+
+public function slideInsert($c_faculty_id,Request $request){
+    	if($request->session()->get('type') == 'faculty'){
+
+
+
+if($request->hasFile('sli_filename')){
+
+            $file = $request->file('sli_filename');
+
+           // echo "File Name: ".$file->getClientOriginalName();
+           $fileName = $file->getClientOriginalName();
+
+            /*echo "<br>File Extension: ".$file->getClientOriginalExtension();
+            echo "<br>File Size: ".$file->getSize();
+            echo "<br>File Mime Type: ".$file->getMimeType();*/
+
+            $file->move('upload/slides', $fileName);
+            
+            /*echo $request->sli_term;
+            echo $fileName;
+            echo $c_faculty_id;*/
+        }
+        else{
+            echo "File not found!";
+        }
+
+
+
+
+
+
+    		
+
+       DB::table('t_course_slide')->insert([
+    ['sli_filename' => $fileName,  
+    'sli_course_id' => $c_faculty_id,  
+    'sli_term' => $request->sli_term
+   
+]
+    
+]);
+
+$request->session()->flash('msg', "✓ SLIDE UPLOADED !");
+	return redirect()->route('faculty.sectionDetails.uploadSlide',$c_faculty_id);
+		}
+	
+	else{
+		$request->session()->flash('msg', "illigal request!");
+            return redirect()->route('login.index');
+        }
+	}
+	//slideInsert  ends
+
+
+	//removeSlide starts
+
+public function removeSlide($sli_id,Request $request){
+    	if($request->session()->get('type') == 'faculty'){
+
+$facultySlideList	= DB::table('t_course_slide')->where('sli_id', $sli_id)
+->delete();
+
+
+/*$CourseNotice	= DB::table('t_course_notice')->where('n_course_id', $c_faculty_id)->orderBy('n_id', 'desc')
+->get();*/
+
+
+		 return back();
+		}
+	
+	else{
+		$request->session()->flash('msg', "illigal request!");
+            return redirect()->route('login.index');
+        }
+	}
+	//removeSlide ends
+
+
 
 
 
