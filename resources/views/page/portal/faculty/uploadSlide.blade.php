@@ -14,7 +14,7 @@ UMS-portal-SectionDetails
           <li><a href="{{route('faculty.sectionDetails',$CourseId)}}">Section Details</a></li>
           
           <li class="selected"><a href="{{route('faculty.sectionDetails.uploadSlide',$CourseId )}}">upload slide</a></li>
-          <li><a href="/portal/preRegistration">pre registration</a></li>
+          <li><a href="{{route('faculty.sectionDetails.students',$CourseId )}}">Students</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
 @endsection
@@ -135,7 +135,15 @@ UMS-portal-SectionDetails
 
 
       
-
+<style> 
+select {
+  width: 100%;
+  
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+</style>
 
 
      

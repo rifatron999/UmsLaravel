@@ -349,7 +349,7 @@ $facultySlideList	= DB::table('t_course_slide')->where('sli_id', $sli_id)
 ->get();*/
 
 
-		 return back();
+		 return back()->with('msg', "✘ SLIDE REMOVED");
 		}
 	
 	else{
@@ -360,7 +360,71 @@ $facultySlideList	= DB::table('t_course_slide')->where('sli_id', $sli_id)
 	//removeSlide ends
 
 
+	//removeNotice starts
 
+public function removeNotice($n_id,Request $request){
+    	if($request->session()->get('type') == 'faculty'){
+
+$facultySlideList	= DB::table('t_course_notice')->where('n_id', $n_id)
+->delete();
+
+
+/*$CourseNotice	= DB::table('t_course_notice')->where('n_course_id', $c_faculty_id)->orderBy('n_id', 'desc')
+->get();*/
+
+
+		 return back()->with('msg', "✘ NOTICE REMOVED");
+		}
+	
+	else{
+		$request->session()->flash('msg', "illigal request!");
+            return redirect()->route('login.index');
+        }
+	}
+	//removeNotice ends
+
+
+//studentListGet starts
+
+public function studentListGet($CourseId,Request $request){
+    	if($request->session()->get('type') == 'faculty'){
+
+$facultyStudentList	= DB::table('t_course_student')->where('c_student_courseId', $CourseId)
+->get();
+//echo $facultyStudentList;
+
+ if(count($facultyStudentList) > 0)
+				 {
+				 	return view('page.portal.faculty.students',  ['facultyStudentList' => $facultyStudentList]);
+				 }
+				 else 
+				 {
+				 	 return back()->with('msg', "✘ You don't have any student yet");
+				 	//
+				 	//return view('page.portal.faculty.tsfSubmit');
+				 }
+
+
+
+
+
+
+		
+		}
+	else{
+		$request->session()->flash('msg', "illigal request!");
+            return redirect()->route('login.index');
+        }
+	}
+
+
+
+
+
+
+
+
+//studentListGet ends
 
 
 

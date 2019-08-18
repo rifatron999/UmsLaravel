@@ -13,7 +13,7 @@ UMS-portal-SectionDetails
           <li><a href="/portal/faculty/tsf">update TSF</a></li>
           <li class="selected"><a href="{{route('faculty.sectionDetails',$facultyCourseDetails[0]->c_faculty_id )}}">Section Details</a></li>
           <li><a href="{{route('faculty.sectionDetails.uploadSlide',$facultyCourseDetails[0]->c_faculty_id )}}">upload slide</a></li>
-          <li><a href="/portal/preRegistration">pre registration</a></li>
+          <li><a href="{{route('faculty.sectionDetails.students',$facultyCourseDetails[0]->c_faculty_id )}}">Students</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
 @endsection
@@ -57,16 +57,16 @@ UMS-portal-SectionDetails
 
 <!-- notice starts  -->
 
-<table align="left" border="1" >
+<table style="width:520px;table-layout:fixed" align="left"  >
     
-    <tr align="center">
+    <tr style="outline: thin solid" align="center">
       
-      <td>PREVIOUS NOTICES</td>
+      <td colspan="2" >PREVIOUS NOTICES</td>
       
     </tr>
 
     @foreach ($CourseNotice as $s) 
-      <tr  >
+      <tr style="outline: thin solid" >
         
 
 <!-- The Modal -->
@@ -99,6 +99,8 @@ UMS
 
         
         <td id="myBtn" style="font-size:20px;" >{{$s->n_course_title}}<sub> on {{$s->n_course_date}}</sub></td>
+        <td><a href="{{route('faculty.sectionDetails.removeNotice',$s->n_id )}}">REMOVE</a></td>
+      </tr>
        
         
         
@@ -115,21 +117,30 @@ UMS
 
 
 
-
+<table  align="center"  >
+   <tr style="outline: thin solid" align="center">
+      
+      <td colspan="2" >ADD NOTICES</td>
+      
+    </tr>
   <form   method="post">
-    <div class="form_settings">
+    
+    
 
-     <p><input placeholder="Write notice title here *"  name="n_course_title"></p>
-     <input  type='date' id='hasta' name="n_course_date" value='<?php echo date('Y-m-d');?>'>
+    <tr style="outline: thin solid" ><td> <p><input class="a" placeholder="Write notice title here *"  name="n_course_title"></p></td>
+     
+     <td><input  class="b" type='date' id='hasta' name="n_course_date" value='<?php echo date('Y-m-d');?>'></td></tr>
      <br>
 
-            <p><textarea placeholder="Write notice description here *"  name="n_course_notice"></textarea></p>
+            <tr style="outline: thin solid" ><td><p><textarea placeholder="Write notice description here *"  name="n_course_notice"></textarea></p></td>
 
             
 
-            <p ><span></span><input class="submit" type="submit" name="name" value="Submit" /></p> 
-          </div>
+            <td><p ><span></span><input class="submit" type="submit" name="name" value="Submit" /></p> </td></tr>
+          
+        
           </form>
+        </table>
 
 
  <script>
@@ -177,8 +188,30 @@ window.onclick = function(event) {
     margin-left: auto;
     margin-right: auto;
 font: 100% arial; 
-  width: 900px;
+  width: 500px;
   height: 80px;
+}
+ .a {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.b {
+  height: : 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=submit]  {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 

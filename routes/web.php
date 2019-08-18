@@ -67,6 +67,10 @@ Route::get('/portal/faculty/sectionDetails/uploadSlide/{c_faculty_id}','facultyC
 
 Route::get('/portal/faculty/sectionDetails/removeSlide/{sli_id}','facultyController@removeSlide')->name('faculty.sectionDetails.removeSlide');
 
+Route::get('/portal/faculty/sectionDetails/removeNotice/{n_id}','facultyController@removeNotice')->name('faculty.sectionDetails.removeNotice');
+
+Route::get('/portal/faculty/sectionDetails/students/{CourseId}','facultyController@studentListGet')->name('faculty.sectionDetails.students');
+
 
 Route::post('/portal/faculty/tsf/insert', 'facultyController@insertTsf');
 Route::post('/portal/faculty/tsf', 'facultyController@updateTsf');
